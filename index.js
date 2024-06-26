@@ -61,7 +61,19 @@ app.put("/completed", async function(req, res) {
     })
 })
 
+app.get('/', (req, res, next) => {
+  setTimeout(() => {
+    try {
+      throw new Error('BROKEN')
+    } catch (err) {
+      next(err)
+    }
+  }, 100)
+})
+
 const PORT=4000;
 app.listen(PORT,()=>{
     console.log(`server started on  port ${PORT}`.bgMagenta)
 });
+
+
